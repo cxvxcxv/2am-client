@@ -1,9 +1,14 @@
 import { useWebSocket } from '@/hooks/useWebSocket';
 import clsx from 'clsx';
 import { TrainFront } from 'lucide-react';
+import { startMockSimulator } from './services/mockSimulator';
 
 export function App() {
 	const { status } = useWebSocket();
+
+	if (import.meta.env.VITE_USE_MOCK === 'true') {
+		startMockSimulator();
+	}
 
 	return (
 		<div className='flex flex-col'>
@@ -31,7 +36,7 @@ export function App() {
 				</div>
 			</header>
 
-			<main className='flex-1 p-6'>main content</main>
+			<main className='flex-1 p-6'></main>
 		</div>
 	);
 }
