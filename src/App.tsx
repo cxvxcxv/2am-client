@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import { TrainFront } from 'lucide-react';
 import { HealthIndex } from './components/panels/HealthIndex';
 import { SpeedPanel } from './components/panels/Speed';
+import { TemperaturePanel } from './components/panels/Temperature';
 import { startMockSimulator } from './services/mockSimulator';
 
 // todo: placeholder components - swap later
@@ -12,7 +13,7 @@ const AlertsPanel = () => (
 const MetricGauges = () => (
 	<div className='grid grid-cols-4 gap-4'>
 		<SpeedPanel />
-		<div className='bg-card border border-card-border rounded-lg'>Temp</div>
+		<TemperaturePanel />
 		<div className='bg-card border border-card-border rounded-lg'>Pressure</div>
 		<div className='bg-card border border-card-border rounded-lg'>Fuel</div>
 	</div>
