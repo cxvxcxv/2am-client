@@ -2,15 +2,15 @@ import { MAX_LOCOMOTIVE_PRESSURE } from '@/config/constants';
 import { useTelemetryStore } from '@/store/telemetryStore';
 import { CircleGauge } from 'lucide-react';
 import { Panel } from '../ui/Panel';
-import { QualityPill } from '../ui/QualityPill';
+// import { QualityPill } from '../ui/QualityPill';
 
 export const PressurePanel = () => {
 	const pressure = useTelemetryStore(
 		state => state.currentFrame?.effective?.pressure ?? 0,
 	);
-	const quality = useTelemetryStore(
-		state => state.currentFrame?.quality?.pressure ?? 'stale',
-	);
+	// const quality = useTelemetryStore(
+	// 	state => state.currentFrame?.quality?.pressure ?? 'stale',
+	// );
 
 	const percentage = Math.min(
 		100,
@@ -26,7 +26,7 @@ export const PressurePanel = () => {
 						Давление
 					</span>
 				</div>
-				<QualityPill quality={quality} />
+				{/* <QualityPill quality={quality} /> */}
 			</header>
 
 			<div className='flex-1 flex flex-col justify-end gap-3'>

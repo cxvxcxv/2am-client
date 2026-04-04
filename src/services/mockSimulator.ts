@@ -18,37 +18,27 @@ const generateFrame = (): TTelemetryFrame => {
 	state.fuel -= 0.01; // constant fuel consumption
 
 	return {
-		ts: Date.now(),
-		connection: 'online',
-		raw: {
-			speed: state.speed + 1,
-			temp: state.temp + 2,
-			pressure: state.pressure + 0.1,
-			fuel: state.fuel,
-		},
+		timestamp: new Date(),
 		effective: {
 			speed: Math.round(state.speed),
 			temp: Math.round(state.temp),
 			pressure: Number(state.pressure.toFixed(1)),
 			fuel: Math.round(state.fuel),
 		},
-		quality: { speed: 'ok', temp: 'ok', pressure: 'ok', fuel: 'ok' },
-		alerts:
-			state.temp > 85
-				? [
-						{
-							code: 'ERR_TEMP_HIGH',
-							severity: 'critical',
-							message: 'Тяговый двигатель #3: перегрев',
-						},
-					]
-				: [],
 		healthIndex: {
 			score: 94,
 			grade: 'A',
 			factors: [
-				{ name: 'Двигатели', contribution: 98 },
-				{ name: 'Тормоза', contribution: 85 },
+				{
+					parameter: 'Engine Temp',
+					status: 'normal',
+					message: 'Operating within normal parameters',
+				},
+				{
+					parameter: 'Brake Wear',
+					status: 'warning',
+					message: 'Brake wear at 85%, consider maintenance soon',
+				},
 			],
 		},
 	};

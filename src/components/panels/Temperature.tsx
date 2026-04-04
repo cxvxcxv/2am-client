@@ -2,15 +2,15 @@ import { MAX_LOCOMOTIVE_TEMP } from '@/config/constants';
 import { useTelemetryStore } from '@/store/telemetryStore';
 import { Thermometer } from 'lucide-react';
 import { Panel } from '../ui/Panel';
-import { QualityPill } from '../ui/QualityPill';
+// import { QualityPill } from '../ui/QualityPill';
 
 export const TemperaturePanel = () => {
 	const temp = useTelemetryStore(
 		state => state.currentFrame?.effective?.temp ?? 0,
 	);
-	const quality = useTelemetryStore(
-		state => state.currentFrame?.quality?.temp ?? 'stale',
-	);
+	// const quality = useTelemetryStore(
+	// 	state => state.currentFrame?.quality?.temp ?? 'stale',
+	// );
 
 	const percentage = Math.min(
 		100,
@@ -26,7 +26,7 @@ export const TemperaturePanel = () => {
 						Температура
 					</span>
 				</div>
-				<QualityPill quality={quality} />
+				{/* <QualityPill quality={quality} /> */}
 			</header>
 
 			<div className='flex-1 flex gap-4 items-end'>

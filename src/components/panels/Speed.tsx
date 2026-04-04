@@ -2,15 +2,15 @@ import { MAX_LOCOMOTIVE_SPEED } from '@/config/constants';
 import { useTelemetryStore } from '@/store/telemetryStore';
 import { Gauge } from 'lucide-react';
 import { Panel } from '../ui/Panel';
-import { QualityPill } from '../ui/QualityPill';
+// import { QualityPill } from '../ui/QualityPill';
 
 export const SpeedPanel = () => {
 	const speed = useTelemetryStore(
 		state => state.currentFrame?.effective?.speed ?? 0,
 	);
-	const quality = useTelemetryStore(
-		state => state.currentFrame?.quality?.speed ?? 'stale',
-	);
+	// const quality = useTelemetryStore(
+	// 	state => state.currentFrame?.quality?.speed ?? 'stale',
+	// );
 
 	const radius = 80;
 	const stroke = 6;
@@ -29,7 +29,7 @@ export const SpeedPanel = () => {
 					</span>
 				</div>
 
-				<QualityPill quality={quality} />
+				{/* <QualityPill quality={quality} /> */}
 			</header>
 
 			<div className='relative flex items-center justify-center mt-2 z-10'>

@@ -2,15 +2,15 @@ import { MAX_LOCOMOTIVE_FUEL } from '@/config/constants';
 import { useTelemetryStore } from '@/store/telemetryStore';
 import { Fuel } from 'lucide-react';
 import { Panel } from '../ui/Panel';
-import { QualityPill } from '../ui/QualityPill';
+// import { QualityPill } from '../ui/QualityPill';
 
 export const FuelPanel = () => {
 	const fuel = useTelemetryStore(
 		state => state.currentFrame?.effective?.fuel ?? 0,
 	);
-	const quality = useTelemetryStore(
-		state => state.currentFrame?.quality?.fuel ?? 'stale',
-	);
+	// const quality = useTelemetryStore(
+	// 	state => state.currentFrame?.quality?.fuel ?? 'stale',
+	// );
 
 	const percentage = Math.min(
 		100,
@@ -26,7 +26,7 @@ export const FuelPanel = () => {
 						Топливо
 					</span>
 				</div>
-				<QualityPill quality={quality} />
+				{/* <QualityPill quality={quality} /> */}
 			</header>
 
 			<div className='flex-1 flex flex-col justify-end gap-3'>
