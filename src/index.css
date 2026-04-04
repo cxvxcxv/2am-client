@@ -14,12 +14,34 @@
 	--color-warning: #d97706;
 	--color-critical: #dc2626;
 	--color-grid: rgba(15, 23, 42, 0.05);
+
+	/* metric colors */
+	--color-metric-speed: #2563eb;
+	--color-metric-temp: #ea580c;
+	--color-metric-pressure: #7c3aed;
+	--color-metric-fuel: #059669;
+
+	/* quality pills */
+	--color-quality-ok: #059669;
+	--color-quality-stale: #d97706;
+	--color-quality-outlier: #9333ea;
+	--color-quality-invalid: #dc2626;
+
+	/* health index */
+	--color-health-good: #059669;
+	--color-health-warning: #d97706;
+	--color-health-critical: #dc2626;
+
+	/* connection status */
+	--color-conn-live: #059669;
+	--color-conn-reconnecting: #d97706;
+	--color-conn-stale: #ea580c;
+	--color-conn-offline: #dc2626;
 }
 
 .dark {
 	--color-background: #0d1117;
 	--color-foreground: #e6edf3;
-
 	--color-card: #161b22;
 	--color-card-border: #30363d;
 	--color-muted: #8b949e;
@@ -30,8 +52,30 @@
 
 	--color-warning: #facc15;
 	--color-critical: #f87171;
-
 	--color-grid: rgba(255, 255, 255, 0.03);
+
+	/* metric colors*/
+	--color-metric-speed: #60a5fa;
+	--color-metric-temp: #fb923c;
+	--color-metric-pressure: #a78bfa;
+	--color-metric-fuel: #34d399;
+
+	/* quality pills */
+	--color-quality-ok: #34d399;
+	--color-quality-stale: #fbbf24;
+	--color-quality-outlier: #c084fc;
+	--color-quality-invalid: #f87171;
+
+	/* health index */
+	--color-health-good: #34d399;
+	--color-health-warning: #fbbf24;
+	--color-health-critical: #f87171;
+
+	/* connection status */
+	--color-conn-live: #34d399;
+	--color-conn-reconnecting: #fbbf24;
+	--color-conn-stale: #fb923c;
+	--color-conn-offline: #f87171;
 }
 
 @theme {
@@ -49,8 +93,31 @@
 	--color-critical: var(--color-critical);
 	--color-grid: var(--color-grid);
 
-	--font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+	/* metrics */
+	--color-metric-speed: var(--color-metric-speed);
+	--color-metric-temp: var(--color-metric-temp);
+	--color-metric-pressure: var(--color-metric-pressure);
+	--color-metric-fuel: var(--color-metric-fuel);
 
+	/* quality */
+	--color-quality-ok: var(--color-quality-ok);
+	--color-quality-stale: var(--color-quality-stale);
+	--color-quality-outlier: var(--color-quality-outlier);
+	--color-quality-invalid: var(--color-quality-invalid);
+
+	/* health */
+	--color-health-good: var(--color-health-good);
+	--color-health-warning: var(--color-health-warning);
+	--color-health-critical: var(--color-health-critical);
+
+	/* connection */
+	--color-conn-live: var(--color-conn-live);
+	--color-conn-reconnecting: var(--color-conn-reconnecting);
+	--color-conn-stale: var(--color-conn-stale);
+	--color-conn-offline: var(--color-conn-offline);
+
+	--font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+	--text-2xs: 0.5rem;
 	--default-transition-duration: 300ms;
 }
 
