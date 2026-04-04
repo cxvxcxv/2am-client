@@ -1,14 +1,10 @@
 import { useWebSocket } from '@/hooks/useWebSocket';
 import clsx from 'clsx';
 import { TrainFront } from 'lucide-react';
+import { HealthIndex } from './components/panels/HealthIndex';
 import { startMockSimulator } from './services/mockSimulator';
 
 // todo: placeholder components - swap later
-const HealthIndex = () => (
-	<div className='bg-card border border-card-border rounded-lg'>
-		Health Index
-	</div>
-);
 const AlertsPanel = () => (
 	<div className='bg-card border border-card-border rounded-lg'>Alerts</div>
 );
@@ -54,8 +50,10 @@ export function App() {
 					<div
 						className={clsx('h-2 w-2 rounded-full', {
 							'bg-secondary animate-pulse': status === 'online',
-							'bg-warning': status === 'reconnecting',
+							'bg-warning':
+								status === 'reconnecting' || status === 'connecting',
 							'bg-critical': status === 'offline',
+							'bg-muted': status === 'stale',
 						})}
 					/>
 					<span className='font-mono text-xs uppercase tracking-widest'>
