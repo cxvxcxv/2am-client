@@ -1,6 +1,7 @@
 import { useWebSocket } from '@/hooks/useWebSocket';
 import clsx from 'clsx';
 import { TrainFront } from 'lucide-react';
+import { FuelPanel } from './components/panels/Fuel';
 import { HealthIndex } from './components/panels/HealthIndex';
 import { PressurePanel } from './components/panels/Pressure';
 import { SpeedPanel } from './components/panels/Speed';
@@ -16,7 +17,7 @@ const MetricGauges = () => (
 		<SpeedPanel />
 		<TemperaturePanel />
 		<PressurePanel />
-		<div className='bg-card border border-card-border rounded-lg'>Fuel</div>
+		<FuelPanel />
 	</div>
 );
 const TrendsPanel = () => (

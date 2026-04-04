@@ -8,7 +8,7 @@ const state = {
 	speed: 84,
 	temp: 82,
 	pressure: 6.2,
-	fuel: 75,
+	fuel: 750,
 };
 
 const generateFrame = (): TTelemetryFrame => {
