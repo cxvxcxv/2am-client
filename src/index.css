@@ -1,0 +1,71 @@
+@import 'tailwindcss';
+
+:root {
+	--color-background: #f1f5f9;
+	--color-foreground: #0f172a;
+	--color-card: #ffffff;
+	--color-card-border: #cbd5e1;
+	--color-muted: #64748b;
+
+	--color-primary: #2563eb;
+	--color-secondary: #0d9488;
+	--color-accent: #10b981;
+
+	--color-warning: #d97706;
+	--color-critical: #dc2626;
+	--color-grid: rgba(15, 23, 42, 0.05);
+}
+
+.dark {
+	--color-background: #0d1117;
+	--color-foreground: #e6edf3;
+
+	--color-card: #161b22;
+	--color-card-border: #30363d;
+	--color-muted: #8b949e;
+
+	--color-primary: #60a5fa;
+	--color-secondary: #2dd4bf;
+	--color-accent: #4ade80;
+
+	--color-warning: #facc15;
+	--color-critical: #f87171;
+
+	--color-grid: rgba(255, 255, 255, 0.03);
+}
+
+@theme {
+	--color-background: var(--color-background);
+	--color-foreground: var(--color-foreground);
+	--color-card: var(--color-card);
+	--color-card-border: var(--color-card-border);
+	--color-muted: var(--color-muted);
+
+	--color-primary: var(--color-primary);
+	--color-secondary: var(--color-secondary);
+	--color-accent: var(--color-accent);
+
+	--color-warning: var(--color-warning);
+	--color-critical: var(--color-critical);
+	--color-grid: var(--color-grid);
+
+	--font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+@layer base {
+	* {
+		@apply border-card-border transition-colors duration-200;
+	}
+
+	body {
+		@apply bg-background text-foreground font-sans antialiased overflow-hidden h-screen;
+		background-image:
+			linear-gradient(var(--color-grid) 1px, transparent 1px),
+			linear-gradient(90deg, var(--color-grid) 1px, transparent 1px);
+		background-size: 40px 40px;
+	}
+
+	.font-mono {
+		font-variant-numeric: tabular-nums;
+	}
+}
