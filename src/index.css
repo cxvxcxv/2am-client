@@ -50,11 +50,16 @@
 	--color-grid: var(--color-grid);
 
 	--font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+	--default-transition-duration: 300ms;
 }
 
 @layer base {
 	* {
-		@apply border-card-border transition-colors duration-200;
+		@apply border-card-border transition-colors;
+		transition: background-color, border-color;
+		transition-duration: 300ms;
+		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 	}
 
 	body {
