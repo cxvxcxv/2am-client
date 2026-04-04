@@ -20,7 +20,7 @@ export const SpeedPanel = () => {
 	const arcOffset = (speed / MAX_LOCOMOTIVE_SPEED) * gaugeLength;
 
 	return (
-		<Panel className='relative h-full rounded-xl p-4 flex flex-col items-center justify-between'>
+		<Panel className='relative flex flex-col items-center justify-between'>
 			<header className='w-full flex justify-between items-center z-10'>
 				<div className='flex items-center gap-2 text-metric-speed'>
 					<Gauge size={14} />

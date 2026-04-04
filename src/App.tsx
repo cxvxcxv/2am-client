@@ -2,6 +2,7 @@ import { useWebSocket } from '@/hooks/useWebSocket';
 import clsx from 'clsx';
 import { TrainFront } from 'lucide-react';
 import { HealthIndex } from './components/panels/HealthIndex';
+import { PressurePanel } from './components/panels/Pressure';
 import { SpeedPanel } from './components/panels/Speed';
 import { TemperaturePanel } from './components/panels/Temperature';
 import { startMockSimulator } from './services/mockSimulator';
@@ -14,7 +15,7 @@ const MetricGauges = () => (
 	<div className='grid grid-cols-4 gap-4'>
 		<SpeedPanel />
 		<TemperaturePanel />
-		<div className='bg-card border border-card-border rounded-lg'>Pressure</div>
+		<PressurePanel />
 		<div className='bg-card border border-card-border rounded-lg'>Fuel</div>
 	</div>
 );

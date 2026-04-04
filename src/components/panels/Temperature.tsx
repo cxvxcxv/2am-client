@@ -18,7 +18,7 @@ export const TemperaturePanel = () => {
 	);
 
 	return (
-		<Panel className='h-full p-4 flex flex-col'>
+		<Panel className='flex flex-col'>
 			<header className='flex justify-between items-center mb-4'>
 				<div className='flex items-center gap-2 text-metric-temp'>
 					<Thermometer size={16} />
