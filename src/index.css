@@ -33,6 +33,7 @@
 	--color-health-critical: #dc2626;
 
 	/* connection status */
+	--color-conn-connecting: #2563eb;
 	--color-conn-live: #059669;
 	--color-conn-reconnecting: #d97706;
 	--color-conn-stale: #ea580c;
@@ -72,6 +73,7 @@
 	--color-health-critical: #f87171;
 
 	/* connection status */
+	--color-conn-connecting: #60a5fa;
 	--color-conn-live: #34d399;
 	--color-conn-reconnecting: #fbbf24;
 	--color-conn-stale: #fb923c;
@@ -111,6 +113,7 @@
 	--color-health-critical: var(--color-health-critical);
 
 	/* connection */
+	--color-conn-connecting: var(--color-conn-connecting);
 	--color-conn-live: var(--color-conn-live);
 	--color-conn-reconnecting: var(--color-conn-reconnecting);
 	--color-conn-stale: var(--color-conn-stale);

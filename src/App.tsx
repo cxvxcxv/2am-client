@@ -50,11 +50,10 @@ export function App() {
 				<div className='flex items-center gap-3'>
 					<div
 						className={clsx('h-2 w-2 rounded-full', {
-							'bg-secondary animate-pulse': status === 'online',
-							'bg-warning':
-								status === 'reconnecting' || status === 'connecting',
-							'bg-critical': status === 'offline',
-							'bg-muted': status === 'stale',
+							'bg-conn-live animate-pulse': status === 'online',
+							'bg-conn-reconnecting': status === 'reconnecting',
+							'bg-conn-offline': status === 'offline',
+							'bg-conn-stale': status === 'stale',
 						})}
 					/>
 					<span className='font-mono text-xs uppercase tracking-widest'>
