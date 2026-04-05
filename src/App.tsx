@@ -1,6 +1,7 @@
 import { useWebSocket } from '@/hooks/useWebSocket';
 import clsx from 'clsx';
 import { TrainFront } from 'lucide-react';
+import { ExportButton } from './components/ExportButton';
 import { AlertsPanel } from './components/panels/Alerts';
 import { FuelPanel } from './components/panels/Fuel';
 import { HealthIndex } from './components/panels/HealthIndex';
@@ -12,14 +13,6 @@ import { ThemeToggle } from './components/ui/ThemeToggle';
 import { startMockSimulator } from './services/mockSimulator';
 
 // todo: placeholder components - swap later
-const MetricGauges = () => (
-	<div className='grid grid-cols-4 gap-4'>
-		<SpeedPanel />
-		<TemperaturePanel />
-		<PressurePanel />
-		<FuelPanel />
-	</div>
-);
 const ReplayControls = () => (
 	<div className='h-16 bg-card border border-card-border rounded-lg'>
 		Replay Scrubber
@@ -58,6 +51,7 @@ export function App() {
 					<span className='font-mono text-xs uppercase tracking-widest'>
 						System: {status}
 					</span>
+					<ExportButton />
 				</div>
 			</header>
 
@@ -67,7 +61,12 @@ export function App() {
 					<AlertsPanel />
 				</aside>
 				<section className='flex flex-col gap-4'>
-					<MetricGauges />
+					<div className='grid grid-cols-4 gap-4'>
+						<SpeedPanel />
+						<TemperaturePanel />
+						<PressurePanel />
+						<FuelPanel />
+					</div>
 					<div className='flex-1'>
 						<TrendsPanel />
 					</div>
