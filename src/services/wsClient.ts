@@ -6,6 +6,20 @@ import {
 import { useTelemetryStore } from '@/store/telemetryStore';
 import type { TTelemetryFrame } from '@/types/telemetry';
 
+function normalizeIncomingFrame(raw: unknown): TTelemetryFrame | null {
+	if (!raw || typeof raw !== 'object') return null;
+	const o = raw as Record<string, unknown>;
+	const ts = o.timestamp;
+	const timestamp =
+		ts instanceof Date
+			? ts
+			: typeof ts === 'string' || typeof ts === 'number'
+				? new Date(ts)
+				: null;
+	if (!timestamp || Number.isNaN(timestamp.getTime())) return null;
+	return { ...(o as object), timestamp } as TTelemetryFrame;
+}
+
 class TelemetryWsClient {
 	private socket: WebSocket | null = null;
 	private url: string;
@@ -34,15 +48,13 @@ class TelemetryWsClient {
 
 			this.socket.onmessage = event => {
 				const message = JSON.parse(event.data);
-				if (message.event === 'telemetry') {
-					const telemetryFrame = message.data;
-					this.lastMessageAt = Date.now();
-					useTelemetryStore
-						.getState()
-						.pushFrame(telemetryFrame as TTelemetryFrame);
-					this.resetStaleTimer();
-				} else if (message.event === 'stream-progress') {
-					console.log(`Loading: ${message.data.percentage}%`);
+				if (message.event === 'telemetry' && message.data !== undefined) {
+					const frame = normalizeIncomingFrame(message.data);
+					if (frame) {
+						this.lastMessageAt = Date.now();
+						useTelemetryStore.getState().pushFrame(frame);
+						this.resetStaleTimer();
+					}
 				}
 			};
 

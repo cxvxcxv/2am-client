@@ -2,6 +2,13 @@ import { create } from 'zustand';
 import { MAX_HISTORY_LENGTH } from '../config/constants';
 import { type TTelemetryFrame } from '../types/telemetry';
 
+function normalizeTimestamp(frame: TTelemetryFrame): TTelemetryFrame {
+	const ts = frame.timestamp;
+	const timestamp =
+		ts instanceof Date ? ts : new Date(ts as unknown as string | number);
+	return { ...frame, timestamp };
+}
+
 interface TelemetryState {
 	currentFrame: TTelemetryFrame | null;
 	history: TTelemetryFrame[];
@@ -12,13 +19,23 @@ interface TelemetryState {
 		| 'offline'
 		| 'stale';
 	replayMode: boolean;
-	replayIndex: number;
+	replayPaused: boolean;
+	replayProgress: number;
 
 	pushFrame: (frame: TTelemetryFrame) => void;
 	setConnectionStatus: (status: TelemetryState['connectionStatus']) => void;
 	setReplayMode: (bool: boolean) => void;
-	setReplayIndex: (index: number) => void;
+	setReplayPaused: (paused: boolean) => void;
+	setReplayProgress: (pct: number) => void;
+	/** During replay, drives gauges without mutating history. */
+	setViewFrame: (frame: TTelemetryFrame | null) => void;
+	exitReplayToLive: () => void;
 	clearHistory: () => void;
+}
+
+function trimHistory(history: TTelemetryFrame[]): TTelemetryFrame[] {
+	if (history.length <= MAX_HISTORY_LENGTH) return history;
+	return history.slice(-MAX_HISTORY_LENGTH);
 }
 
 export const useTelemetryStore = create<TelemetryState>(set => ({
@@ -26,22 +43,30 @@ export const useTelemetryStore = create<TelemetryState>(set => ({
 	history: [],
 	connectionStatus: 'connecting',
 	replayMode: false,
-	replayIndex: 0,
+	replayPaused: false,
+	replayProgress: 0,
 
 	pushFrame: frame =>
 		set(state => {
-			const newHistory = [...state.history, frame];
-			if (newHistory.length > MAX_HISTORY_LENGTH) {
-				newHistory.shift();
-			}
+			const normalized = normalizeTimestamp(frame);
+			const newHistory = trimHistory([...state.history, normalized]);
 			return {
-				currentFrame: frame,
 				history: newHistory,
+				currentFrame: state.replayMode ? state.currentFrame : normalized,
 			};
 		}),
 
 	setConnectionStatus: status => set({ connectionStatus: status }),
 	setReplayMode: replayMode => set({ replayMode }),
-	setReplayIndex: replayIndex => set({ replayIndex }),
+	setReplayPaused: replayPaused => set({ replayPaused }),
+	setReplayProgress: replayProgress => set({ replayProgress }),
+	setViewFrame: currentFrame => set({ currentFrame }),
+	exitReplayToLive: () =>
+		set(s => ({
+			replayMode: false,
+			replayPaused: false,
+			replayProgress: 0,
+			currentFrame: s.history[s.history.length - 1] ?? null,
+		})),
 	clearHistory: () => set({ history: [], currentFrame: null }),
 }));
