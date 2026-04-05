@@ -11,13 +11,6 @@ import { TemperaturePanel } from './components/panels/Temperature';
 import { TrendsPanel } from './components/panels/Trends';
 import { startMockSimulator } from './services/mockSimulator';
 
-// todo: placeholder components - swap later
-const ReplayControls = () => (
-	<div className='h-16 bg-card border border-card-border rounded-lg'>
-		Replay Scrubber
-	</div>
-);
-
 export function App() {
 	const { status } = useWebSocket();
 
@@ -70,7 +63,6 @@ export function App() {
 					<div className='flex-1'>
 						<TrendsPanel />
 					</div>
-					<ReplayControls />
 				</section>
 			</main>
 		</div>
