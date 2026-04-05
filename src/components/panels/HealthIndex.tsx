@@ -74,7 +74,7 @@ export const HealthIndex = () => {
 			<div className='space-y-3'>
 				<div className='space-y-1'>
 					<div className='flex justify-between text-xs uppercase tracking-tighter'>
-						<span className='text-muted'>Engine</span>
+						<span className='text-muted'>Двигатель</span>
 						<span className='text-muted font-bold'>{engine}%</span>
 					</div>
 					<div className='h-1 w-full bg-white/10 rounded-full overflow-hidden'>
@@ -86,7 +86,7 @@ export const HealthIndex = () => {
 				</div>
 				<div className='space-y-1'>
 					<div className='flex justify-between text-xs uppercase tracking-tighter'>
-						<span className='text-muted'>Brake</span>
+						<span className='text-muted'>Тормоза</span>
 						<span className='text-muted font-bold'>{brake}%</span>
 					</div>
 					<div className='h-1 w-full bg-white/10 rounded-full overflow-hidden'>
