@@ -1,6 +1,7 @@
 import { useWebSocket } from '@/hooks/useWebSocket';
 import clsx from 'clsx';
 import { TrainFront } from 'lucide-react';
+import { ExportButton } from './components/ExportButton';
 import { AlertsPanel } from './components/panels/Alerts';
 import { FuelPanel } from './components/panels/Fuel';
 import { HealthIndex } from './components/panels/HealthIndex';
@@ -11,14 +12,6 @@ import { TrendsPanel } from './components/panels/Trends';
 import { startMockSimulator } from './services/mockSimulator';
 
 // todo: placeholder components - swap later
-const MetricGauges = () => (
-	<div className='grid grid-cols-4 gap-4'>
-		<SpeedPanel />
-		<TemperaturePanel />
-		<PressurePanel />
-		<FuelPanel />
-	</div>
-);
 const ReplayControls = () => (
 	<div className='h-16 bg-card border border-card-border rounded-lg'>
 		Replay Scrubber
@@ -44,18 +37,21 @@ export function App() {
 					</h1>
 				</div>
 
-				<div className='flex items-center gap-3'>
-					<div
-						className={clsx('h-2 w-2 rounded-full', {
-							'bg-conn-live animate-pulse': status === 'online',
-							'bg-conn-reconnecting': status === 'reconnecting',
-							'bg-conn-offline': status === 'offline',
-							'bg-conn-stale': status === 'stale',
-						})}
-					/>
-					<span className='font-mono text-xs uppercase tracking-widest'>
-						System: {status}
-					</span>
+				<div className='flex items-center gap-4'>
+					<div className='flex items-center gap-3'>
+						<div
+							className={clsx('h-2 w-2 rounded-full', {
+								'bg-conn-live animate-pulse': status === 'online',
+								'bg-conn-reconnecting': status === 'reconnecting',
+								'bg-conn-offline': status === 'offline',
+								'bg-conn-stale': status === 'stale',
+							})}
+						/>
+						<span className='font-mono text-xs uppercase tracking-widest'>
+							System: {status}
+						</span>
+					</div>
+					<ExportButton />
 				</div>
 			</header>
 
@@ -65,7 +61,12 @@ export function App() {
 					<AlertsPanel />
 				</aside>
 				<section className='flex flex-col gap-4'>
-					<MetricGauges />
+					<div className='grid grid-cols-4 gap-4'>
+						<SpeedPanel />
+						<TemperaturePanel />
+						<PressurePanel />
+						<FuelPanel />
+					</div>
 					<div className='flex-1'>
 						<TrendsPanel />
 					</div>
