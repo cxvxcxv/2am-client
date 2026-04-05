@@ -9,6 +9,8 @@ const state = {
 	temp: 82,
 	pressure: 6.2,
 	fuel: 750,
+	engine: 97,
+	brake: 89,
 };
 
 const generateFrame = (): TTelemetryFrame => {
@@ -16,6 +18,8 @@ const generateFrame = (): TTelemetryFrame => {
 	state.temp += (Math.random() - 0.5) * 0.5;
 	state.pressure += (Math.random() - 0.5) * 0.1;
 	state.fuel -= 0.01; // constant fuel consumption
+	state.engine += (Math.random() - 0.5) * 0.5;
+	state.brake += (Math.random() - 0.5) * 0.5;
 
 	return {
 		timestamp: new Date(),
@@ -24,6 +28,8 @@ const generateFrame = (): TTelemetryFrame => {
 			temp: Math.round(state.temp),
 			pressure: Number(state.pressure.toFixed(1)),
 			fuel: Math.round(state.fuel),
+			engine: Math.round(state.engine),
+			brake: Math.round(state.brake),
 		},
 		healthIndex: {
 			score: 94,

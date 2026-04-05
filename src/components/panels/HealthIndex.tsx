@@ -4,6 +4,10 @@ import { Panel } from '../ui/Panel';
 
 export const HealthIndex = () => {
 	const health = useTelemetryStore(state => state.currentFrame?.healthIndex);
+	const engine = useTelemetryStore(
+		state => state.currentFrame?.effective.engine,
+	);
+	const brake = useTelemetryStore(state => state.currentFrame?.effective.brake);
 
 	if (!health) return <div className='animate-pulse rounded-lg' />;
 
@@ -68,24 +72,30 @@ export const HealthIndex = () => {
 			</div>
 
 			<div className='space-y-3'>
-				{health.factors.map((factor, i) => (
-					<div
-						key={i}
-						className='space-y-1'>
-						<div className='flex justify-between text-xs uppercase tracking-tighter'>
-							<span className='text-muted'>{factor.name}</span>
-							<span className='text-muted font-bold'>
-								{factor.contribution}%
-							</span>
-						</div>
-						<div className='h-1 w-full bg-white/10 rounded-full overflow-hidden'>
-							<div
-								className='h-full bg-primary transition-all duration-1000'
-								style={{ width: `${factor.contribution}%` }}
-							/>
-						</div>
+				<div className='space-y-1'>
+					<div className='flex justify-between text-xs uppercase tracking-tighter'>
+						<span className='text-muted'>Engine</span>
+						<span className='text-muted font-bold'>{engine}%</span>
 					</div>
-				))}
+					<div className='h-1 w-full bg-white/10 rounded-full overflow-hidden'>
+						<div
+							className='h-full bg-primary transition-all duration-1000'
+							style={{ width: `${engine}%` }}
+						/>
+					</div>
+				</div>
+				<div className='space-y-1'>
+					<div className='flex justify-between text-xs uppercase tracking-tighter'>
+						<span className='text-muted'>Brake</span>
+						<span className='text-muted font-bold'>{brake}%</span>
+					</div>
+					<div className='h-1 w-full bg-white/10 rounded-full overflow-hidden'>
+						<div
+							className='h-full bg-primary transition-all duration-1000'
+							style={{ width: `${brake}%` }}
+						/>
+					</div>
+				</div>
 			</div>
 		</Panel>
 	);

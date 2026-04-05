@@ -6,6 +6,7 @@ import { HealthIndex } from './components/panels/HealthIndex';
 import { PressurePanel } from './components/panels/Pressure';
 import { SpeedPanel } from './components/panels/Speed';
 import { TemperaturePanel } from './components/panels/Temperature';
+import { TrendsPanel } from './components/panels/Trends';
 import { startMockSimulator } from './services/mockSimulator';
 
 // todo: placeholder components - swap later
@@ -18,11 +19,6 @@ const MetricGauges = () => (
 		<TemperaturePanel />
 		<PressurePanel />
 		<FuelPanel />
-	</div>
-);
-const TrendsPanel = () => (
-	<div className='h-full bg-card border border-card-border rounded-lg'>
-		Trends Chart
 	</div>
 );
 const ReplayControls = () => (
