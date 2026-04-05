@@ -103,7 +103,7 @@ export const TrendsPanel = () => {
 	return (
 		<div className='h-full w-full bg-card border border-card-border rounded-lg p-4 flex flex-col'>
 			<div className='flex justify-between items-center mb-4'>
-				<h2 className='text-sm font-mono font-bold uppercase tracking-widest text-muted-foreground'>
+				<h2 className='text-sm font-mono font-bold uppercase tracking-widest text-muted'>
 					Normalized Telemetry Trends
 				</h2>
 
@@ -138,13 +138,13 @@ export const TrendsPanel = () => {
 						<CartesianGrid
 							strokeDasharray='3 3'
 							vertical={false}
-							stroke='hsl(var(--card-border))'
+							stroke='var(--color-card-border)'
 						/>
 						<XAxis
 							dataKey='time'
 							tickFormatter={formatTime}
 							minTickGap={50}
-							stroke='hsl(var(--muted-foreground))'
+							stroke='var(--color-muted)'
 							fontSize={10}
 							tickLine={false}
 							axisLine={false}
@@ -181,7 +181,7 @@ const CustomTooltip = ({ active, payload, label }: TCustomTooltipProps) => {
 
 	return (
 		<div className='bg-card border border-card-border p-3 rounded-lg shadow-xl font-mono text-[11px]'>
-			<p className='mb-2 text-muted-foreground'>
+			<p className='mb-2 text-muted'>
 				{new Date(String(label)).toLocaleString()}
 			</p>
 			{METRICS.map(m => (
