@@ -144,3 +144,48 @@
 		font-variant-numeric: tabular-nums;
 	}
 }
+@keyframes train-choochoo {
+    0%, 100% {
+        transform: translate3d(0, 0, 0) rotate(0deg);
+    }
+    /* Удар 1 - резкий подскок */
+    4% {
+        transform: translate3d(4px, -2px, 0) rotate(2deg);
+    }
+    10% {
+        transform: translate3d(1px, 1px, 0) rotate(0.5deg);
+    }
+    /* Удар 2 - ответный в бок */
+    16% {
+        transform: translate3d(-5px, -1.5px, 0) rotate(-1.5deg);
+    }
+    22% {
+        transform: translate3d(-1px, 1px, 0) rotate(-0.5deg);
+    }
+    /* Быстрое затухание качки */
+    35% {
+        transform: translate3d(2.5px, 0, 0) rotate(1deg);
+    }
+    50% {
+        transform: translate3d(-1.5px, 0, 0) rotate(-0.5deg);
+    }
+    65% {
+        transform: translate3d(0.5px, 0, 0) rotate(0.2deg);
+    }
+    /* Пауза перед следующим прогоном стыков */
+    100% {
+        transform: translate3d(0, 0, 0) rotate(0deg);
+    }
+}
+
+.animate-train-choochoo {
+    /* 1.2s — это скорость нормального скорого поезда */
+    animation: train-choochoo 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+    transform-origin: 50% 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.animate-train-choochoo {
+		animation: none;
+	}
+}

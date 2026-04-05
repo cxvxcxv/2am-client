@@ -23,7 +23,7 @@ export function App() {
 		<div className='flex flex-col min-h-screen'>
 			<header className='px-6 py-4 border-b bg-card border-card-border flex justify-between items-center font-mono'>
 				<div className='flex items-center gap-3'>
-					<span className='text-primary p-2 rounded-lg border bg-primary/20 border-primary'>
+					<span className='text-primary p-2 rounded-lg border bg-primary/20 border-primary inline-flex items-center justify-center animate-train-choochoo'>
 						<TrainFront />
 					</span>
 					<h1 className='text-xl font-bold tracking-tighter'>
