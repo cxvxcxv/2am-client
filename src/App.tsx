@@ -1,6 +1,7 @@
 import { useWebSocket } from '@/hooks/useWebSocket';
 import clsx from 'clsx';
 import { TrainFront } from 'lucide-react';
+import { AlertsPanel } from './components/panels/Alerts';
 import { FuelPanel } from './components/panels/Fuel';
 import { HealthIndex } from './components/panels/HealthIndex';
 import { PressurePanel } from './components/panels/Pressure';
@@ -10,9 +11,6 @@ import { TrendsPanel } from './components/panels/Trends';
 import { startMockSimulator } from './services/mockSimulator';
 
 // todo: placeholder components - swap later
-const AlertsPanel = () => (
-	<div className='bg-card border border-card-border rounded-lg'>Alerts</div>
-);
 const MetricGauges = () => (
 	<div className='grid grid-cols-4 gap-4'>
 		<SpeedPanel />
