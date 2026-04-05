@@ -8,6 +8,7 @@ import { PressurePanel } from './components/panels/Pressure';
 import { SpeedPanel } from './components/panels/Speed';
 import { TemperaturePanel } from './components/panels/Temperature';
 import { TrendsPanel } from './components/panels/Trends';
+import { ThemeToggle } from './components/ui/ThemeToggle';
 import { startMockSimulator } from './services/mockSimulator';
 
 // todo: placeholder components - swap later
@@ -45,6 +46,7 @@ export function App() {
 				</div>
 
 				<div className='flex items-center gap-3'>
+					<ThemeToggle />
 					<div
 						className={clsx('h-2 w-2 rounded-full', {
 							'bg-conn-live animate-pulse': status === 'online',
