@@ -33,13 +33,16 @@ class TelemetryWsClient {
 			};
 
 			this.socket.onmessage = event => {
-				const data = JSON.parse(event.data);
-
-				// handle telemetry frames
-				if (data.ts) {
+				const message = JSON.parse(event.data);
+				if (message.event === 'telemetry') {
+					const telemetryFrame = message.data;
 					this.lastMessageAt = Date.now();
-					useTelemetryStore.getState().pushFrame(data as TTelemetryFrame);
+					useTelemetryStore
+						.getState()
+						.pushFrame(telemetryFrame as TTelemetryFrame);
 					this.resetStaleTimer();
+				} else if (message.event === 'stream-progress') {
+					console.log(`Loading: ${message.data.percentage}%`);
 				}
 			};
 
