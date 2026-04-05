@@ -1,75 +1,153 @@
-# React + TypeScript + Vite
+# 🚂 Locomotive Digital Twin
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Веб-приложение для мониторинга телеметрии локомотива в реальном времени. Используется для отслеживания ключевых параметров, диагностики и анализа состояния железнодорожного транспорта.
 
-Currently, two official plugins are available:
+## ✨ Возможности
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Мониторинг в реальном времени** - Прямое подключение к системе локомотива через WebSocket
+- **Визуализация данных** - Интерактивные графики и панели для各параметров
+- **Система оценки здоровья** - Автоматическая оценка состояния локомотива (от A до E)
+- **Система алертов** - Уведомления о критических и предупредительных состояниях
+- **История данных** — Сохранение данных за последние 15 минут (900 записей)
+- **Темная/светлая тема** - Удобный интерфейс для работы в любое время суток
+- **Экспорт данных** - Возможность сохранения телеметрии для анализа
+- **Режим симуляции** - Mock-симулятор для разработки и тестирования
 
-## React Compiler
+## 📊 Отслеживаемые параметры
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+| Параметр | Единица | Диапазон |
+|----------|---------|----------|
+| Скорость | км/ч | 0-120 |
+| Температура | °C | 0-200 |
+| Давление | атм | 0-25 |
+| Топливо | л | 0-1000 |
+| Состояние двигателя | % | 0-100 |
+| Состояние тормозной системы | % | 0-100 |
+| Каждый параметр сопровождается оценкой здоровья системы
 
-Note: This will impact Vite dev & build performances.
+## 🏗️ Структура проекта
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+src/
+├── components/          # React компоненты
+│   ├── ExportButton.tsx # Экспорт данных
+│   ├── panels/          # Панели отслеживания параметров
+│   │   ├── Alerts.tsx   # Система алертов
+│   │   ├── Fuel.tsx     # Топливо
+│   │   ├── Health.tsx   # Индекс здоровья
+│   │   ├── Pressure.tsx # Давление
+│   │   ├── Speed.tsx    # Скорость
+│   │   ├── Temp.tsx     # Температура
+│   │   └── Trends.tsx   # Тренды и графики
+│   └── ui/              # UI компоненты
+│       ├── Panel.tsx    # Базовая панель
+│       ├── QualityPill.tsx # Индикатор качества
+│       └── ThemeToggle.tsx # Переключение темы
+├── hooks/
+│   └── useWebSocket.ts  # Хук для WebSocket связи
+├── services/
+│   ├── wsClient.ts      # WebSocket клиент
+│   └── mockSimulator.ts # Mock-симулятор данных
+├── store/               # Zustand хранилища
+│   ├── telemetryStore.ts # Хранилище телеметрии
+│   └── themeStore.ts    # Хранилище темы
+├── types/
+│   └── telemetry.ts     # TypeScript типы данных
+├── config/
+│   └── constants.ts     # Константы приложения
+└── App.tsx              # Главный компонент
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🚀 Начало работы
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Требования
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Node.js 16+ 
+- npm или yarn
+
+### Установка
+
+```bash
+# Клонируйте репозиторий
+git clone <repo-url>
+cd 2am-client
+
+# Установите зависимости
+npm install
 ```
+
+### Разработка
+
+```bash
+# Запустите dev сервер
+
+npm run dev
+
+# Откройте http://localhost:5173
+```
+
+### Режим симуляции
+
+Для локального тестирования без реального подключения к локомотиву установите переменную окружения:
+
+```bash
+VITE_USE_MOCK=true
+npm run dev
+```
+
+### Сборка
+
+```bash
+# TypeScript проверка и сборка
+npm run build
+
+# Локальный preview
+npm run preview
+```
+
+### Линтинг
+
+```bash
+# Проверка кода
+npm lint
+```
+
+## 🛠️ Технологический стек
+
+- **React 19** - UI фреймворк
+- **TypeScript** - Типизация JavaScript
+- **Vite** - Быстрая сборка
+- **TailwindCSS** - Стили и дизайн
+- **Zustand** - Управление состоянием
+- **Recharts** - Интерактивные графики
+- **Lucide React** - Иконки
+- **WebSocket** - Real-time коммуникация
+
+## 📡 WebSocket API
+
+Приложение ожидает подключения к WebSocket серверу, отправляющему телеметрию в формате:
+
+```typescript
+{
+  timestamp: Date;
+  effective: {
+    temp?: number;
+    pressure?: number;
+    fuel?: number;
+    speed?: number;
+    engine?: number;
+    brake?: number;
+  };
+  healthIndex: {
+    score: number;
+    grade: 'A' | 'B' | 'C' | 'D' | 'E';
+    factors: THealthFactor[];
+  };
+}
+```
+
+Для конфигурации подключения см. [wsClient.ts](src/services/wsClient.ts).
+
+## 📝 Лицензия
+
+Проект разработан для хакатона HackNU 26.
